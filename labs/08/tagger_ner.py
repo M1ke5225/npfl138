@@ -120,7 +120,7 @@ class Model(npfl138.TrainableModule):
             return {"accuracy": self.metrics["accuracy"]}
 
         # Perform greedy decoding.
-        predictions_greedy = y_pred.argmax(dim=1)
+        predictions_greedy = torch.tensor(y_pred).argmax(dim=1)
         predictions_greedy.masked_fill_(word_ids == MorphoDataset.PAD, MorphoDataset.PAD)
         self.metrics["f1_greedy"].update(predictions_greedy, y)
 
