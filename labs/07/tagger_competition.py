@@ -45,7 +45,7 @@ def main(args: argparse.Namespace) -> None:
         predictions = model.predict(test, data_with_labels=True, as_numpy=True)
 
         for predicted_tags, words in zip(predictions, morpho.test.words.strings):
-            for predicted_tag in predicted_tags[:, :len(words)].argmax(axis=0):
+            for predicted_tag in predicted_tags[:, :len(words)].argmax(dim=0):
                 print(morpho.train.tags.string_vocab.string(predicted_tag), file=predictions_file)
             print(file=predictions_file)
 
